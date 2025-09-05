@@ -1,0 +1,70 @@
+services:
+  paperless-ngx:
+    image: paperlessngx/paperless-ngx:2.18
+    container_name: paperless-ngx
+    volumes:
+      - paperless-data:/usr/src/paperless/data
+      - paperless-media:/usr/src/paperless/media
+      - paperless-export:/usr/src/paperless/export
+      - paperless-consume:/usr/src/paperless/consume
+    environment:
+      - PAPERLESS_URL=https://paperless.gustavocastro.com
+      - PAPERLESS_SECRET_KEY=${SECRET_KEY}
+      - PAPERLESS_OCR_LANGUAGE=eng
+      - PAPERLESS_OCR_LANGUAGES=nld
+      - PAPERLESS_REDIS=redis://paperless-redis:6379
+      - PAPERLESS_TASK_WORKERS=1
+      - PAPERLESS_THREADS_PER_WORKER=1
+      - PAPERLESS_CONVERT_MEMORY_LIMIT=64
+      - PAPERLESS_WEBSERVER_WORKERS=1
+    networks:
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.paperless-ngx.rule=Host(`paperless.gustavocastro.com`)
+      - traefik.http.routers.paperless-ngx.entrypoints=websecure
+      - traefik.http.routers.paperless-ngx.tls=true
+      - traefik.http.services.paperless-ngx.loadbalancer.server.port=8000
+  paperless-redis:
+    image: redis:8
+    container_name: paperless-redis
+    volumes:
+      - paperless-redis:/data
+    networks:
+      - traefik
+  paperless-backup:
+    image: offen/docker-volume-backup:v2.44.0
+    container_name: paperless-backup
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - paperless-data:/backup/paperless-data
+      - paperless-media:/backup/paperless-media
+    networks:
+      - traefik
+    environment:
+      - AWS_SECRET_ACCESS_KEY=${IDRIVE_SECRET_KEY}
+      - AWS_ACCESS_KEY_ID=${IDRIVE_ACCESS_KEY}
+      - AWS_ENDPOINT=p8b5.fra.idrivee2-35.com
+      - AWS_S3_BUCKET_NAME=backups
+      - AWS_S3_PATH=paperless
+      - BACKUP_CRON_EXPRESSION=0 1 * * *
+      - BACKUP_FILENAME=paperless-backup-%Y-%m-%dT%H-%M-%S.{{ .Extension }}
+      - BACKUP_PRUNING_PREFIX=paperless-backup-
+      - BACKUP_RETENTION_DAYS=15
+      - EXEC_FORWARD_OUTPUT=true
+
+volumes:
+  paperless-data:
+    external: true
+  paperless-media:
+    external: true
+  paperless-export:
+    external: true
+  paperless-consume:
+    external: true
+  paperless-redis:
+    external: true
+
+networks:
+  traefik:
+    external: true

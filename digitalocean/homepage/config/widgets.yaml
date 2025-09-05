@@ -1,0 +1,14 @@
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+    cputemp: true
+    uptime: true
+    units: metric
+
+- search:
+    provider: custom
+    url: https://www.ecosia.org/search?q=
+    target: _blank
+    suggestionUrl: https://ac.ecosia.org/autocomplete?type=list&q= # Optional
+    showSearchSuggestions: true # Optional

@@ -1,0 +1,65 @@
+docker:
+  context: digitalocean
+  identifier: homeserver
+
+sops:
+  age:
+    key_file: ${AGE_KEY_FILE}
+
+secrets:
+  sops:
+    - secrets.env
+
+applications:
+  gustavocastro:
+    root: ./gustavocastro
+  homepage:
+    root: ./homepage
+  traefik:
+    root: ./traefik
+    secrets:
+      sops:
+        - secrets.env
+  vaultwarden:
+    root: ./vaultwarden
+  paperless:
+    root: ./paperless
+    secrets:
+      sops:
+        - secrets.env
+
+filesets:
+  gustavocastro:
+    source: ./gustavocastro/public
+    target_volume: gustavocastro
+    target_path: /usr/share/nginx/html
+    restart_services:
+      - web
+  homepage:
+    source: ./homepage/config
+    target_volume: homepage
+    target_path: /app/config
+    restart_services:
+      - homepage
+  traefik_config:
+    source: ./traefik/config
+    target_volume: traefik_config
+    target_path: /etc/traefik
+    restart_services:
+      - traefik
+  traefik_dynamic:
+    source: ./traefik/dynamic
+    target_volume: traefik_dynamic
+    target_path: /dynamic
+
+volumes:
+  vaultwarden:
+  paperless-data:
+  paperless-media:
+  paperless-export:
+  paperless-consume:
+  paperless-redis:
+
+
+networks:
+  traefik:

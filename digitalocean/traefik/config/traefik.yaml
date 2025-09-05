@@ -1,0 +1,38 @@
+log:
+  level: DEBUG
+accessLog: {}
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+    http:
+      tls:
+        certResolver: cf2
+        domains:
+          - main: "gustavocastro.com"
+            sans:
+              - "*.gustavocastro.com"
+  traefik:
+    address: ":8080"
+
+providers:
+  docker:
+    exposedByDefault: false
+  file:
+    filename: "/dynamic/dynamic.yaml"
+    watch: true
+
+certificatesResolvers:
+  cf2:
+    acme:
+      email: "me@gustavocastro.com"
+      storage: "/letsencrypt/acme.json"
+      # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      dnsChallenge:
+        provider: "cloudflare"
+
+api:
+  dashboard: true
+  insecure: true

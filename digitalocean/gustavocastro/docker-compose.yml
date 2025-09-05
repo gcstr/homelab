@@ -1,0 +1,34 @@
+services:
+  web:
+    image: nginx:1.29-alpine-perl
+    container_name: gustavocastro
+    volumes:
+      - gustavocastro:/usr/share/nginx/html:ro
+    labels:
+      - traefik.enable=true
+      # main router (apex)
+      - traefik.http.routers.site.rule=Host(`gustavocastro.com`)
+      - traefik.http.routers.site.entrypoints=websecure
+      - traefik.http.routers.site.tls=true
+      - traefik.http.routers.site.tls.certresolver=cf2
+      - traefik.http.routers.site.tls.domains[0].main=gustavocastro.com
+      - traefik.http.routers.site.tls.domains[0].sans=*.gustavocastro.com
+      - traefik.http.services.site.loadbalancer.server.port=80
+      # www router that redirects
+      - traefik.http.routers.site-www.rule=Host(`www.gustavocastro.com`)
+      - traefik.http.routers.site-www.entrypoints=websecure
+      - traefik.http.routers.site-www.tls=true
+      - traefik.http.routers.site-www.middlewares=redir-www-to-apex
+      - traefik.http.middlewares.redir-www-to-apex.redirectregex.regex=^https?://www\.gustavocastro\.com/(.*)
+      - traefik.http.middlewares.redir-www-to-apex.redirectregex.replacement=https://gustavocastro.com/$${1}
+      - traefik.http.middlewares.redir-www-to-apex.redirectregex.permanent=true
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  gustavocastro:
+    external: true

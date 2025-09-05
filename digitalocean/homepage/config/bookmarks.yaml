@@ -1,0 +1,20 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Bookmarks:
+    - Tailscale:
+        - icon: si-tailscale
+          href: https://login.tailscale.com/welcome
+    - AWS:
+        - icon: amazon-web-services
+          href: https://console.aws.amazon.com/
+    - Oracle Cloud:
+        - icon: oracle
+          href: https://www.oracle.com/cloud/sign-in.html
+    - Cloudflare:
+        - icon: cloudflare
+          href: https://dash.cloudflare.com/
+    - Github Repo:
+        - icon: github
+          href: https://github.com/gcstr/homeserver/
