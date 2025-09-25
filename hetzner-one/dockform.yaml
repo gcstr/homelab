@@ -1,0 +1,25 @@
+docker:
+  context: hetzner-one
+  identifier: homeserver
+
+sops:
+  age:
+    key_file: ${AGE_KEY_FILE}
+
+secrets:
+  sops:
+    - secrets.env
+
+applications:
+  paperless:
+    root: ./paperless
+    secrets:
+      sops:
+        - secrets.env
+
+volumes:
+  paperless-data:
+  paperless-media:
+  paperless-export:
+  paperless-consume:
+  paperless-redis:

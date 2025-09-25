@@ -22,11 +22,6 @@ applications:
         - secrets.env
   vaultwarden:
     root: ./vaultwarden
-  paperless:
-    root: ./paperless
-    secrets:
-      sops:
-        - secrets.env
 
 filesets:
   gustavocastro:
@@ -54,11 +49,6 @@ filesets:
 
 volumes:
   vaultwarden:
-  paperless-data:
-  paperless-media:
-  paperless-export:
-  paperless-consume:
-  paperless-redis:
 
 
 networks:

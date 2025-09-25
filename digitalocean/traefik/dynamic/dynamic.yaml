@@ -1,0 +1,14 @@
+http:
+  routers:
+    paperless:
+      rule: Host(`paperless.gustavocastro.com`)
+      entryPoints:
+        - websecure
+      service: paperless
+      tls: {}
+  services:
+    paperless:
+      loadBalancer:
+        servers:
+          - url: "http://hetzner-one:8000"
+
