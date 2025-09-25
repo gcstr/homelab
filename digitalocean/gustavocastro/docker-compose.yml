@@ -2,6 +2,7 @@ services:
   web:
     image: nginx:1.29-alpine-perl
     container_name: gustavocastro
+    restart: unless-stopped
     volumes:
       - gustavocastro:/usr/share/nginx/html:ro
     labels:

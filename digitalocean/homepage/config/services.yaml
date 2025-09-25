@@ -18,27 +18,6 @@
 #        widget:
 #          type: traefik
 #          url: http://traefik.home
-- Container:
-    - Home Portainer:
-        icon: portainer.png
-        href: https://portainer.gustavocastro.com/#!/3/docker/dashboard
-        description: Home Portainer
-        server: local-docker
-        container: portainer
-        widget:
-          type: portainer
-          url: https://portainer.gustavocastro.com/
-          env: 3
-          key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
-    - Oracle Portainer:
-        icon: portainer.png
-        href: https://portainer.gustavocastro.com/#!/4/docker/dashboard
-        description: Oracle Portainer
-        widget:
-          type: portainer
-          url: https://portainer.gustavocastro.com/
-          env: 4
-          key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
 - Files:
     - Cloudreve:
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/png/cloudreve.png

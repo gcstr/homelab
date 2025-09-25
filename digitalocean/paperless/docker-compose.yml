@@ -1,6 +1,7 @@
 services:
   paperless-ngx:
-    image: paperlessngx/paperless-ngx:2.18
+    image: paperlessngx/paperless-ngx:2.18.4
+    restart: unless-stopped
     container_name: paperless-ngx
     volumes:
       - paperless-data:/usr/src/paperless/data
@@ -32,8 +33,10 @@ services:
       - paperless-redis:/data
     networks:
       - traefik
+
   paperless-backup:
     image: offen/docker-volume-backup:v2.44.0
+    restart: unless-stopped
     container_name: paperless-backup
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

@@ -1,6 +1,7 @@
 services:
   traefik:
     image: traefik:v3.5.1
+    restart: unless-stopped
     container_name: traefik
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
