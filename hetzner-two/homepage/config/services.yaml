@@ -9,15 +9,15 @@
           version: 6
           fields: ["queries", "blocked_percent", "gravity"]
           key: LG0ReyfETfl/lWiKFWSMo3N6alfKwWgyJGhq1Agoz+Y=
-#    - Traefik:
-#        icon: traefik.png
-#        description: traefik
-#        href: http://traefik.home/
-#        server: local-docker
-#        container: traefik-traefik-1
-#        widget:
-#          type: traefik
-#          url: http://traefik.home
+    # - Traefik:
+    #     icon: traefik.png
+    #     description: traefik
+    #     href: http://traefik.home/
+    #     server: local-docker
+    #     container: traefik-traefik-1
+    #     widget:
+    #         type: traefik
+    #         url: http://traefik.home
 - Files:
     - Cloudreve:
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/png/cloudreve.png

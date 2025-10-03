@@ -1,5 +1,5 @@
 docker:
-  context: digitalocean
+  context: hetzner-two
   identifier: homeserver
 
 sops:
@@ -11,10 +11,13 @@ secrets:
     - secrets.env
 
 applications:
+  blinko:
+    root: ./blinko
+    secrets:
+      sops:
+        - secrets.env
   gustavocastro:
     root: ./gustavocastro
-  homepage:
-    root: ./homepage
   traefik:
     root: ./traefik
     secrets:
@@ -30,12 +33,6 @@ filesets:
     target_path: /usr/share/nginx/html
     restart_services:
       - web
-  homepage:
-    source: ./homepage/config
-    target_volume: homepage
-    target_path: /app/config
-    restart_services:
-      - homepage
   traefik_config:
     source: ./traefik/config
     target_volume: traefik_config
@@ -47,9 +44,11 @@ filesets:
     target_volume: traefik_dynamic
     target_path: /dynamic
 
-volumes:
-  vaultwarden:
-
-
 networks:
+  blinko-network:
   traefik:
+
+volumes:
+  blinko:
+  blinko_postgres:
+  vaultwarden:

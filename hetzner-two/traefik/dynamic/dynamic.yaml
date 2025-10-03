@@ -11,4 +11,3 @@ http:
       loadBalancer:
         servers:
           - url: "http://hetzner-one:8000"
-

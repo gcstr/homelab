@@ -1,0 +1,11 @@
+docker:
+  context: oracle
+  identifier: homeserver
+
+sops:
+  age:
+    key_file: ${AGE_KEY_FILE}
+
+applications:
+  uptime:
+    root: ./uptime
