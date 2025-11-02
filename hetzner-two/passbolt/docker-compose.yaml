@@ -1,0 +1,62 @@
+services:
+  db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+      MYSQL_DATABASE: "passbolt"
+      MYSQL_USER: "passbolt"
+      MYSQL_PASSWORD: ${DATASOURCES_DEFAULT_PASSWORD}
+    volumes:
+      - passbolt_db:/var/lib/mysql
+    networks:
+      - traefik
+
+  passbolt:
+    image: passbolt/passbolt:latest-ce
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      APP_FULL_BASE_URL: https://passbolt.gustavocastro.com
+      DATASOURCES_DEFAULT_HOST: "db"
+      DATASOURCES_DEFAULT_USERNAME: "passbolt"
+      DATASOURCES_DEFAULT_PASSWORD: ${DATASOURCES_DEFAULT_PASSWORD}
+      DATASOURCES_DEFAULT_DATABASE: "passbolt"
+    volumes:
+      - passbolt_gpg_volume:/etc/passbolt/gpg
+      - passbolt_jwt_volume:/etc/passbolt/jwt
+    command:
+      [
+        "/usr/bin/wait-for.sh",
+        "-t",
+        "0",
+        "db:3306",
+        "--",
+        "/docker-entrypoint.sh",
+      ]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.passbolt.rule=Host(`passbolt.gustavocastro.com`)
+      - traefik.http.routers.passbolt.entrypoints=websecure
+      - traefik.http.routers.passbolt.tls=true
+      - traefik.http.services.passbolt.loadbalancer.server.port=80
+      - homepage.group=Hetzner Two
+      - homepage.name=Passbolt
+      - homepage.icon=passbolt.png
+      - homepage.href=https://passbolt.gustavocastro.com/
+      - homepage.description=Password manager
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  passbolt_db:
+    external: true
+  passbolt_gpg_volume:
+    external: true
+  passbolt_jwt_volume:
+    external: true

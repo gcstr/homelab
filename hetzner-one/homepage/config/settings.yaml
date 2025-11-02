@@ -6,6 +6,7 @@ iconStyle: theme
 headerStyle: clean
 disableCollapse: true
 hideVersion: true
+showStats: true
 background:
   #image: https://images.unsplash.com/photo-1475070929565-c985b496cb9f?auto=format&fit=crop&w=2560&q=80
   #image: https://images.unsplash.com/photo-1477346611705-65d1883cee1e?auto=format&fit=crop&w=2560&q=80
@@ -16,31 +17,15 @@ background:
 cardBlur: md
 
 layout:
-  Networking:
+  Hetzner One:
     style: row
     columns: 3
-    useEqualHeights: true
-  Container:
-    style: row
-    columns: 3
-    useEqualHeights: true
-  Apps:
-    style: row
-    columns: 3
-    useEqualHeights: true
-  Files:
-    style: row
-    columns: 3
-    useEqualHeights: true
-  Links:
-    style: row
-    columns: 3
-    useEqualHeights: true
-  Blinko:
+    useEqualHeights: true 
+  Hetzner Two:
     style: row
     columns: 3
     useEqualHeights: true
   Bookmarks:
     style: row
-    columns: 4
+    columns: 3
     useEqualHeights: true

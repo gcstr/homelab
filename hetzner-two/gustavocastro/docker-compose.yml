@@ -1,10 +1,10 @@
 services:
   web:
     image: nginx:1.29-alpine-perl
-    container_name: gustavocastro
+    container_name: gcstr
     restart: unless-stopped
     volumes:
-      - gustavocastro:/usr/share/nginx/html:ro
+      - gcstr:/usr/share/nginx/html:ro
     labels:
       - traefik.enable=true
       # main router (apex)
@@ -23,6 +23,11 @@ services:
       - traefik.http.middlewares.redir-www-to-apex.redirectregex.regex=^https?://www\.gustavocastro\.com/(.*)
       - traefik.http.middlewares.redir-www-to-apex.redirectregex.replacement=https://gustavocastro.com/$${1}
       - traefik.http.middlewares.redir-www-to-apex.redirectregex.permanent=true
+      - homepage.group=Hetzner Two
+      - homepage.name=gustavocastro.com
+      - homepage.icon=nginx.png
+      - homepage.href=https://gustavocastro.com/
+      - homepage.description=Personal website
     networks:
       - traefik
 
@@ -31,5 +36,5 @@ networks:
     external: true
 
 volumes:
-  gustavocastro:
+  gcstr:
     external: true

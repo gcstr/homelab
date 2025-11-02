@@ -10,13 +10,8 @@ secrets:
   sops:
     - secrets.env
 
-applications:
-  blinko:
-    root: ./blinko
-    secrets:
-      sops:
-        - secrets.env
-  gustavocastro:
+stacks:
+  gcstr:
     root: ./gustavocastro
   traefik:
     root: ./traefik
@@ -25,11 +20,16 @@ applications:
         - secrets.env
   vaultwarden:
     root: ./vaultwarden
+  passbolt:
+    root: ./passbolt
+    secrets:
+      sops:
+        - secrets.env
 
 filesets:
-  gustavocastro:
+  gcstr:
     source: ./gustavocastro/public
-    target_volume: gustavocastro
+    target_volume: gcstr
     target_path: /usr/share/nginx/html
     restart_services:
       - web
@@ -45,10 +45,10 @@ filesets:
     target_path: /dynamic
 
 networks:
-  blinko-network:
   traefik:
 
 volumes:
-  blinko:
-  blinko_postgres:
   vaultwarden:
+  passbolt_db:
+  passbolt_gpg_volume:
+  passbolt_jwt_volume:

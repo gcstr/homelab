@@ -1,6 +1,6 @@
 services:
   paperless-ngx:
-    image: paperlessngx/paperless-ngx:2.18.4
+    image: paperlessngx/paperless-ngx:2.19.2
     restart: unless-stopped
     ports:
       - 8000:8000
@@ -20,12 +20,23 @@ services:
       - PAPERLESS_THREADS_PER_WORKER=1
       - PAPERLESS_CONVERT_MEMORY_LIMIT=64
       - PAPERLESS_WEBSERVER_WORKERS=1
+    labels:
+      - homepage.group=Hetzner One
+      - homepage.name=PaperlessNGX
+      - homepage.icon=paperless-ngx.png
+      - homepage.href=https://paperless.gustavocastro.com/
+      - homepage.description=Digital document management
 
   paperless-redis:
     image: redis:8
     container_name: paperless-redis
     volumes:
       - paperless-redis:/data
+    labels:
+      - homepage.group=Hetzner One
+      - homepage.name=PaperlessNGX-redis
+      - homepage.icon=redis.png
+      - homepage.description=PaperlessNGX Redis database
 
   paperless-backup:
     image: offen/docker-volume-backup:v2.44.0
@@ -46,6 +57,11 @@ services:
       - BACKUP_PRUNING_PREFIX=paperless-backup-
       - BACKUP_RETENTION_DAYS=15
       - EXEC_FORWARD_OUTPUT=true
+    labels:
+      - homepage.group=Hetzner One
+      - homepage.name=PaperlessNGX backup
+      - homepage.icon=docker-volume-backup.png
+      - homepage.description=PaperlessNGX Backup to IDrive
 
 volumes:
   paperless-data:

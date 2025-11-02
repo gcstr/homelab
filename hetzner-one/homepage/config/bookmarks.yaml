@@ -6,15 +6,18 @@
     - Tailscale:
         - icon: si-tailscale
           href: https://login.tailscale.com/welcome
+    - Hetzner:
+        - icon: hetzner
+          href: https://console.hetzner.com/projects/11964967/dashboard
     - AWS:
         - icon: amazon-web-services
           href: https://console.aws.amazon.com/
-    - Oracle Cloud:
+    - Oracle:
         - icon: oracle
           href: https://www.oracle.com/cloud/sign-in.html
     - Cloudflare:
         - icon: cloudflare
           href: https://dash.cloudflare.com/
-    - Github Repo:
+    - Github:
         - icon: github
           href: https://github.com/gcstr/homeserver/

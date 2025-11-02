@@ -15,6 +15,11 @@ services:
       - 443:443
     networks:
       - traefik
+    labels:
+      - homepage.group=Hetzner Two
+      - homepage.name=Traefik
+      - homepage.icon=traefik.png
+      - homepage.description=Reverse proxy
 
 networks:
   traefik:

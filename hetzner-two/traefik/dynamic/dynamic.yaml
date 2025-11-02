@@ -6,8 +6,18 @@ http:
         - websecure
       service: paperless
       tls: {}
+    homepage:
+      rule: Host(`home.gustavocastro.com`)
+      entryPoints:
+        - websecure
+      service: homepage
+      tls: {}
   services:
     paperless:
       loadBalancer:
         servers:
           - url: "http://hetzner-one:8000"
+    homepage:
+      loadBalancer:
+        servers:
+          - url: "http://hetzner-one:3000"
