@@ -1,0 +1,37 @@
+services:
+  bitwarden:
+    image: ghcr.io/bitwarden/self-host:beta
+    restart: always
+    networks:
+      - traefik
+    volumes:
+      - bitwarden:/etc/bitwarden
+      - bitwarden_logs:/var/log/bitwarden
+    environment:
+      - BW_DOMAIN=bitwarden.gustavocastro.com
+      - BW_DB_PROVIDER=sqlite
+      - BW_INSTALLATION_ID=b69cd9de-008c-415f-8667-b38e01522c08
+      - BW_INSTALLATION_KEY=rME3hreqMeUsUX6P0xaV
+      - globalSettings__disableUserRegistration=true
+      - adminSettings__admins=me@gustavocastro.com
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.bitwarden.rule=Host(`bitwarden.gustavocastro.com`)
+      - traefik.http.routers.bitwarden.entrypoints=websecure
+      - traefik.http.routers.bitwarden.tls=true
+      - traefik.http.services.bitwarden.loadbalancer.server.port=8080
+      - homepage.group=Hetzner Two
+      - homepage.name=Bitwarden
+      - homepage.icon=bitwarden.png
+      - homepage.href=https://bitwarden.gustavocastro.com/
+      - homepage.description=Password manager
+
+volumes:
+  bitwarden:
+    external: true
+  bitwarden_logs:
+    external: true
+
+networks:
+  traefik:
+    external: true

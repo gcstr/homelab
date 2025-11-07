@@ -6,17 +6,17 @@ services:
     volumes:
       - vaultwarden:/data
     environment:
-      - DOMAIN=https://bitwarden.gustavocastro.com
+      - DOMAIN=https://vaultwarden.gustavocastro.com
     labels:
       - traefik.enable=true
-      - traefik.http.routers.vaultwarden.rule=Host(`bitwarden.gustavocastro.com`)
+      - traefik.http.routers.vaultwarden.rule=Host(`vaultwarden.gustavocastro.com`)
       - traefik.http.routers.vaultwarden.entrypoints=websecure
       - traefik.http.routers.vaultwarden.tls=true
       - traefik.http.services.vaultwarden.loadbalancer.server.port=80
       - homepage.group=Hetzner Two
       - homepage.name=Vaultwarden
       - homepage.icon=vaultwarden.png
-      - homepage.href=https://bitwarden.gustavocastro.com/
+      - homepage.href=https://vaultwarden.gustavocastro.com/
       - homepage.description=Password manager
     networks:
       - traefik

@@ -20,6 +20,8 @@ stacks:
         - secrets.env
   vaultwarden:
     root: ./vaultwarden
+  bitwarden:
+    root: ./bitwarden
 
 filesets:
   gcstr:
@@ -44,3 +46,5 @@ networks:
 
 volumes:
   vaultwarden:
+  bitwarden:
+  bitwarden_logs:
