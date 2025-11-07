@@ -20,11 +20,6 @@ stacks:
         - secrets.env
   vaultwarden:
     root: ./vaultwarden
-  passbolt:
-    root: ./passbolt
-    secrets:
-      sops:
-        - secrets.env
 
 filesets:
   gcstr:
@@ -49,6 +44,3 @@ networks:
 
 volumes:
   vaultwarden:
-  passbolt_db:
-  passbolt_gpg_volume:
-  passbolt_jwt_volume:
