@@ -26,6 +26,30 @@ services:
       - homepage.href=https://bitwarden.gustavocastro.com/
       - homepage.description=Password manager
 
+  backup:
+    image: offen/docker-volume-backup:v2.44.0
+    container_name: bitwarden-backup
+    volumes:
+      - bitwarden:/backup/bitwarden
+    networks:
+      - traefik
+    environment:
+      - AWS_SECRET_ACCESS_KEY=${IDRIVE_SECRET_KEY}
+      - AWS_ACCESS_KEY_ID=${IDRIVE_ACCESS_KEY}
+      - AWS_ENDPOINT=p8b5.fra.idrivee2-35.com
+      - AWS_S3_BUCKET_NAME=backups
+      - AWS_S3_PATH=bitwarden
+      - BACKUP_CRON_EXPRESSION=0 1 * * *
+      - BACKUP_FILENAME=bitwarden-backup-%Y-%m-%dT%H-%M-%S.{{ .Extension }}
+      - BACKUP_PRUNING_PREFIX=bitwarden-backup-
+      - BACKUP_RETENTION_DAYS=15
+      - EXEC_FORWARD_OUTPUT=true
+    labels:
+      - homepage.group=Hetzner Two
+      - homepage.name=Bitwarden backup
+      - homepage.icon=docker-volume-backup.png
+      - homepage.description=Bitwarden Backup to IDrive
+
 volumes:
   bitwarden:
     external: true
