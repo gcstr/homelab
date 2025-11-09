@@ -22,6 +22,8 @@ stacks:
     root: ./vaultwarden
   bitwarden:
     root: ./bitwarden
+  uptime-kuma:
+    root: ./uptime
 
 filesets:
   gcstr:
@@ -48,3 +50,4 @@ volumes:
   vaultwarden:
   bitwarden:
   bitwarden_logs:
+  uptime-kuma:

@@ -18,6 +18,7 @@ services:
       - homepage.icon=vaultwarden.png
       - homepage.href=https://vaultwarden.gustavocastro.com/
       - homepage.description=Password manager
+      - docker-volume-backup.copy-post=curl -s -o /dev/null https://uptime.gustavocastro.com/api/push/5wbjBAidmJPD3YfSBwHGswBRlAJ612BB?status=up
     networks:
       - traefik
   backup:
@@ -25,6 +26,7 @@ services:
     container_name: vaultwarden-backup
     volumes:
       - vaultwarden:/backup/vaultwarden
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - traefik
     environment:

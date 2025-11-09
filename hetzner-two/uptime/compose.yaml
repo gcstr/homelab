@@ -1,0 +1,27 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    restart: unless-stopped
+    volumes:
+      - uptime-kuma:/app/data
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.uptime.rule=Host(`uptime.gustavocastro.com`)
+      - traefik.http.routers.uptime.entrypoints=websecure
+      - traefik.http.routers.uptime.tls=true
+      - traefik.http.services.uptime.loadbalancer.server.port=3001
+      - homepage.group=Hetzner Two
+      - homepage.name=Uptime Kuma
+      - homepage.icon=uptime-kuma.png
+      - homepage.href=https://uptime.gustavocastro.com/status/uptime
+      - homepage.description=Uptime tool
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  uptime-kuma:
+    external: true

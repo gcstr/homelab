@@ -26,6 +26,7 @@ services:
       - homepage.icon=paperless-ngx.png
       - homepage.href=https://paperless.gustavocastro.com/
       - homepage.description=Digital document management
+      - docker-volume-backup.copy-post=curl -s -o /dev/null https://uptime.gustavocastro.com/api/push/8MTljV7Qaa2WaSTAJ5LNba8Rdr33RiDH?status=up
 
   paperless-redis:
     image: redis:8

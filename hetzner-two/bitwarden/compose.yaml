@@ -1,6 +1,7 @@
 services:
   bitwarden:
     image: ghcr.io/bitwarden/self-host:beta
+    container_name: bitwarden
     restart: always
     networks:
       - traefik
@@ -25,12 +26,14 @@ services:
       - homepage.icon=bitwarden.png
       - homepage.href=https://bitwarden.gustavocastro.com/
       - homepage.description=Password manager
+      - docker-volume-backup.copy-post=curl -s -o /dev/null https://uptime.gustavocastro.com/api/push/H5cVF03sWzYSMwDF0i4bMpssc3bTkmJz?status=up
 
   backup:
     image: offen/docker-volume-backup:v2.44.0
     container_name: bitwarden-backup
     volumes:
       - bitwarden:/backup/bitwarden
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - traefik
     environment:
