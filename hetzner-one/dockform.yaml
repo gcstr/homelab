@@ -18,6 +18,8 @@ stacks:
         - secrets.env
   homepage:
     root: ./homepage
+  n8n:
+    root: ./n8n
 
 filesets:
   homepage:
@@ -33,3 +35,4 @@ volumes:
   paperless-export:
   paperless-consume:
   paperless-redis:
+  n8n_data:

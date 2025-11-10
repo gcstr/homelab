@@ -12,6 +12,12 @@ http:
         - websecure
       service: homepage
       tls: {}
+    n8n:
+      rule: Host(`n8n.gustavocastro.com`)
+      entryPoints:
+        - websecure
+      service: n8n
+      tls: {}
   services:
     paperless:
       loadBalancer:
@@ -21,3 +27,7 @@ http:
       loadBalancer:
         servers:
           - url: "http://hetzner-one:3000"
+    n8n:
+      loadBalancer:
+        servers:
+          - url: "http://hetzner-one:5678"

@@ -3,7 +3,7 @@ services:
     image: paperlessngx/paperless-ngx:2.19.2
     restart: unless-stopped
     ports:
-      - 8000:8000
+      - 100.125.137.57:8000:8000
     container_name: paperless-ngx
     volumes:
       - paperless-data:/usr/src/paperless/data
