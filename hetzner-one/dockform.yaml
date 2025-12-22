@@ -18,8 +18,11 @@ stacks:
         - secrets.env
   homepage:
     root: ./homepage
-  n8n:
-    root: ./n8n
+  linkwarden:
+    root: ./linkwarden
+    secrets:
+      sops:
+        - secrets.env
 
 filesets:
   homepage:
@@ -35,4 +38,7 @@ volumes:
   paperless-export:
   paperless-consume:
   paperless-redis:
-  n8n_data:
+  linkwarden_pgdata:
+  linkwarden_data:
+  meili_data: 
+  

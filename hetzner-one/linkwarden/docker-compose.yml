@@ -1,0 +1,53 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    restart: always
+    volumes:
+      - linkwarden_pgdata:/var/lib/postgresql/data
+    labels:
+      - homepage.group=Hetzner One
+      - homepage.name=PostgreSQL
+      - homepage.icon=postgresql.png
+      - homepage.description=Linkwarden Database
+  linkwarden:
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
+      - NEXTAUTH_URL=https://linkwarden.gustavocastro.com/api/v1/auth
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - DISABLE_NEW_SSO_USERS=true
+      - NEXT_PUBLIC_DISABLE_REGISTRATION=true
+      # - OPENAI_MODEL=gpt-5-nano
+      # - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_MODEL=claude-haiku-4-5
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    restart: always
+    image: ghcr.io/linkwarden/linkwarden:v2.13.2
+    ports:
+      - 3001:3000
+    volumes:
+      - linkwarden_data:/data/data
+    depends_on:
+      - postgres
+      # - meilisearch
+    labels:
+      - homepage.group=Hetzner One
+      - homepage.name=Linkwarden
+      - homepage.href=https://linkwarden.gustavocastro.com/
+      - homepage.icon=linkwarden.png
+      - homepage.description=Bookmark Manager
+  # meilisearch:
+  #   image: getmeili/meilisearch:v1.12.8
+  #   restart: always
+  #   volumes:
+  #     - meili_data:/meili_data
+
+volumes:
+  linkwarden_pgdata:
+    external: true
+  linkwarden_data:
+    external: true
+  meili_data:
+    external: true

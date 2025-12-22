@@ -15,6 +15,7 @@ services:
       - 443:443
     networks:
       - traefik
+      - default
     labels:
       - homepage.group=Hetzner Two
       - homepage.name=Traefik
