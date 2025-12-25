@@ -3,24 +3,28 @@ http:
     paperless:
       rule: Host(`paperless.gustavocastro.com`)
       entryPoints:
+        - web
         - websecure
       service: paperless
       tls: {}
     homepage:
       rule: Host(`home.gustavocastro.com`)
       entryPoints:
+        - web
         - websecure
       service: homepage
       tls: {}
     linkwarden:
       rule: Host(`linkwarden.gustavocastro.com`)
       entryPoints:
+        - web
         - websecure
       service: linkwarden
       tls: {}
     papra:
       rule: Host(`papra.gustavocastro.com`)
       entryPoints:
+        - web
         - websecure
       service: papra
       tls: {}
