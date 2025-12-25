@@ -1,0 +1,20 @@
+services:
+  coredns:
+    image: coredns/coredns:1.12.0
+    restart: unless-stopped
+    container_name: coredns
+    command: ["-conf", "/config/Corefile"]
+    volumes:
+      - coredns_config:/config
+    ports:
+      - "100.104.139.20:53:53/udp"
+      - "100.104.139.20:53:53/tcp"
+    labels:
+      - homepage.group=Hetzner Two
+      - homepage.name=CoreDNS
+      - homepage.icon=coredns.png
+      - homepage.description=Custom DNS for tailnet
+
+volumes:
+  coredns_config:
+    external: true

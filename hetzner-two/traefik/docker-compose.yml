@@ -20,12 +20,12 @@ services:
       - homepage.group=Hetzner Two
       - homepage.name=Traefik
       - homepage.icon=traefik.png
-      - homepage.description=Reverse proxy
+      - homepage.description=Traefik Reverse proxy
 
 networks:
   traefik:
     external: true
-
+    
 volumes:
   letsencrypt:
   traefik_config:

@@ -18,6 +18,8 @@ stacks:
     secrets:
       sops:
         - secrets.env
+  coredns:
+    root: ./coredns
   vaultwarden:
     root: ./vaultwarden
   bitwarden:
@@ -42,6 +44,15 @@ filesets:
     source: ./traefik/dynamic
     target_volume: traefik_dynamic
     target_path: /dynamic
+  coredns_config:
+    source: ./coredns/config
+    target_volume: coredns_config
+    target_path: /config
+    restart_services:
+      - coredns
+    ownership:
+      file_mode: "755"
+      preserve_existing: false
 
 networks:
   traefik:
@@ -51,3 +62,4 @@ volumes:
   bitwarden:
   bitwarden_logs:
   uptime-kuma:
+  coredns_config:

@@ -1,0 +1,29 @@
+# CoreDNS configuration for gustavocastro.com tailnet DNS
+# Resolves custom domains to Traefik Tailscale IP: 100.104.139.20
+# Public domains (gustavocastro.com, www) use normal DNS
+
+# Handle gustavocastro.com domains
+gustavocastro.com {
+    log
+    hosts {
+        # Services on hetzner-one (via Traefik)
+        100.104.139.20 paperless.gustavocastro.com
+        100.104.139.20 home.gustavocastro.com
+        100.104.139.20 linkwarden.gustavocastro.com
+        100.104.139.20 papra.gustavocastro.com
+        # Services on hetzner-two (via Traefik)
+        100.104.139.20 bitwarden.gustavocastro.com
+        100.104.139.20 vaultwarden.gustavocastro.com
+        100.104.139.20 uptime.gustavocastro.com
+        fallthrough
+    }
+    forward . 1.1.1.1 1.0.0.1
+}
+
+# Forward all other queries to Cloudflare DNS
+. {
+    forward . 1.1.1.1 1.0.0.1
+    log
+    errors
+    cache 30
+}

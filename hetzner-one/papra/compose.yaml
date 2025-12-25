@@ -4,7 +4,7 @@ services:
     image: ghcr.io/papra-hq/papra:25.11.0-rootless
     restart: unless-stopped
     ports:
-      - 1221:1221
+      - 10.0.0.3:1221:1221
     volumes:
       - papra:/app/app-data
     environment:
