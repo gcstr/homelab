@@ -23,6 +23,8 @@ stacks:
     secrets:
       sops:
         - secrets.env
+  papra:
+    root: ./papra
 
 filesets:
   homepage:
@@ -40,5 +42,5 @@ volumes:
   paperless-redis:
   linkwarden_pgdata:
   linkwarden_data:
-  meili_data: 
+  papra: 
   

@@ -1,0 +1,16 @@
+services:
+  papra:
+    container_name: papra
+    image: ghcr.io/papra-hq/papra:25.11.0-rootless
+    restart: unless-stopped
+    ports:
+      - 1221:1221
+    volumes:
+      - papra:/app/app-data
+    environment:
+      - APP_BASE_URL=https://papra.gustavocastro.com
+      
+
+volumes:
+  papra:
+    external: true

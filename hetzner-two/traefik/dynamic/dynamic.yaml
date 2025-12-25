@@ -18,6 +18,12 @@ http:
         - websecure
       service: linkwarden
       tls: {}
+    papra:
+      rule: Host(`papra.gustavocastro.com`)
+      entryPoints:
+        - websecure
+      service: papra
+      tls: {}
   services:
     paperless:
       loadBalancer:
@@ -31,3 +37,7 @@ http:
       loadBalancer:
         servers:
           - url: "http://49.12.231.90:3001"
+    papra:
+      loadBalancer:
+        servers:
+          - url: "http://hetzner-one:1221"
