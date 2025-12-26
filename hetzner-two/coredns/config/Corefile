@@ -15,6 +15,7 @@ gustavocastro.com {
         100.104.139.20 bitwarden.gustavocastro.com
         100.104.139.20 vaultwarden.gustavocastro.com
         100.104.139.20 uptime.gustavocastro.com
+        100.104.139.20 beszel.gustavocastro.com
         fallthrough
     }
     forward . 1.1.1.1 1.0.0.1

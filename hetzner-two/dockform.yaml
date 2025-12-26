@@ -26,6 +26,11 @@ stacks:
     root: ./bitwarden
   uptime-kuma:
     root: ./uptime
+  beszel:
+    root: ./beszel
+    secrets:
+      sops:
+        - secrets.env
 
 filesets:
   gcstr:
@@ -63,3 +68,6 @@ volumes:
   bitwarden_logs:
   uptime-kuma:
   coredns_config:
+  beszel_agent_data:
+  beszel_socket:
+  beszel_data:

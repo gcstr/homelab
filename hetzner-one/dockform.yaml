@@ -25,6 +25,11 @@ stacks:
         - secrets.env
   papra:
     root: ./papra
+  beszel:
+    root: ./beszel
+    secrets:
+      sops:
+        - secrets.env
 
 filesets:
   homepage:
