@@ -10,6 +10,29 @@ services:
     environment:
       - APP_BASE_URL=https://papra.gustavocastro.com
       
+  papra-backup:
+    image: offen/docker-volume-backup:v2.44.0
+    restart: unless-stopped
+    container_name: papra-backup
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - papra:/backup/papra
+    environment:
+      - AWS_SECRET_ACCESS_KEY=${R2_SECRET_ACCESS_KEY}
+      - AWS_ACCESS_KEY_ID=${R2_ACCESS_KEY_ID}
+      - AWS_ENDPOINT=08b6b57d1575fabc2a723fe99391ce8a.r2.cloudflarestorage.com
+      - AWS_S3_BUCKET_NAME=backups
+      - AWS_S3_PATH=papra
+      - BACKUP_CRON_EXPRESSION=0 1 * * *
+      - BACKUP_FILENAME=papra-backup-%Y-%m-%dT%H-%M-%S.{{ .Extension }}
+      - BACKUP_PRUNING_PREFIX=papra-backup-
+      - BACKUP_RETENTION_DAYS=15
+      - EXEC_FORWARD_OUTPUT=true
+    labels:
+      - homepage.group=Hetzner One
+      - homepage.name=Papra backup
+      - homepage.icon=docker-volume-backup.png
+      - homepage.description=Papra Backup to R2
 
 volumes:
   papra:

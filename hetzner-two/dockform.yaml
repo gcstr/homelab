@@ -20,8 +20,6 @@ stacks:
         - secrets.env
   coredns:
     root: ./coredns
-  vaultwarden:
-    root: ./vaultwarden
   bitwarden:
     root: ./bitwarden
   uptime-kuma:
@@ -63,7 +61,6 @@ networks:
   traefik:
 
 volumes:
-  vaultwarden:
   bitwarden:
   bitwarden_logs:
   uptime-kuma:

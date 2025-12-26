@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres:16-alpine
+    container_name: linkwarden-postgres
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     restart: always
@@ -12,6 +13,7 @@ services:
       - homepage.icon=postgresql.png
       - homepage.description=Linkwarden Database
   linkwarden:
+    container_name: linkwarden
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
@@ -38,6 +40,31 @@ services:
       - homepage.href=https://linkwarden.gustavocastro.com/
       - homepage.icon=linkwarden.png
       - homepage.description=Bookmark Manager
+
+  linkwarden-backup:
+    image: offen/docker-volume-backup:v2.44.0
+    restart: unless-stopped
+    container_name: linkwarden-backup
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - linkwarden_data:/backup/linkwarden_data
+    environment:
+      - AWS_SECRET_ACCESS_KEY=${R2_SECRET_ACCESS_KEY}
+      - AWS_ACCESS_KEY_ID=${R2_ACCESS_KEY_ID}
+      - AWS_ENDPOINT=08b6b57d1575fabc2a723fe99391ce8a.r2.cloudflarestorage.com
+      - AWS_S3_BUCKET_NAME=backups
+      - AWS_S3_PATH=linkwarden
+      - BACKUP_CRON_EXPRESSION=0 1 * * *
+      - BACKUP_FILENAME=linkwarden-backup-%Y-%m-%dT%H-%M-%S.{{ .Extension }}
+      - BACKUP_PRUNING_PREFIX=linkwarden-backup-
+      - BACKUP_RETENTION_DAYS=30
+      - EXEC_FORWARD_OUTPUT=true
+    labels:
+      - homepage.group=Hetzner One
+      - homepage.name=Linkwarden backup
+      - homepage.icon=docker-volume-backup.png
+      - homepage.description=Linkwarden Backup to R2
+
   # meilisearch:
   #   image: getmeili/meilisearch:v1.12.8
   #   restart: always
