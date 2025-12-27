@@ -29,6 +29,8 @@ stacks:
     secrets:
       sops:
         - secrets.env
+  glance:
+    root: ./glance
 
 filesets:
   gcstr:
@@ -56,6 +58,18 @@ filesets:
     ownership:
       file_mode: "755"
       preserve_existing: false
+  glance_config:
+    source: ./glance/config
+    target_volume: glance_config
+    target_path: /app/config
+    restart_services:
+      - glance
+  glance_assets:
+    source: ./glance/assets
+    target_volume: glance_assets
+    target_path: /app/assets
+    restart_services:
+      - glance
 
 networks:
   traefik:

@@ -1,0 +1,34 @@
+services:
+  glance:
+    container_name: glance
+    image: glanceapp/glance
+    restart: unless-stopped
+    networks:
+      - traefik
+    volumes:
+      - glance_config:/app/config
+      - glance_assets:/app/assets
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    # ports:
+    #   - 8080:8080
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.glance.rule=Host(`glance.gustavocastro.com`)
+      - traefik.http.routers.glance.entrypoints=websecure
+      - traefik.http.routers.glance.tls=true
+      - traefik.http.services.glance.loadbalancer.server.port=8080
+      - glance.name=glance
+      - glance.icon=sh:glance
+      - glance.url=https://home.gustavocastro.com
+      - glance.description=this
+      - glance.id=glance
+
+networks:
+  traefik:
+    external: true
+volumes:
+  glance_config:
+    external: true
+  glance_assets:
+    external: true

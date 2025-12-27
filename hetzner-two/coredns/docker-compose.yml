@@ -10,10 +10,10 @@ services:
       - "100.104.139.20:53:53/udp"
       - "100.104.139.20:53:53/tcp"
     labels:
-      - homepage.group=Hetzner Two
-      - homepage.name=CoreDNS
-      - homepage.icon=coredns.png
-      - homepage.description=Custom DNS for tailnet
+      - glance.name=coredns
+      - glance.icon=di:coredns
+      - glance.description=custom dns for tailnet
+      - glance.id=coredns
 
 volumes:
   coredns_config:

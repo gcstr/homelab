@@ -21,13 +21,12 @@ services:
       - traefik.http.routers.bitwarden.entrypoints=websecure
       - traefik.http.routers.bitwarden.tls=true
       - traefik.http.services.bitwarden.loadbalancer.server.port=8080
-      - homepage.group=Hetzner Two
-      - homepage.name=Bitwarden
-      - homepage.icon=bitwarden.png
-      - homepage.href=https://bitwarden.gustavocastro.com/
-      - homepage.description=Password manager
       - docker-volume-backup.copy-post=curl -s -o /dev/null https://uptime.gustavocastro.com/api/push/H5cVF03sWzYSMwDF0i4bMpssc3bTkmJz?status=up
-
+      - glance.name=bitwarden
+      - glance.icon=sh:bitwarden
+      - glance.url=https://bitwarden.gustavocastro.com
+      - glance.description=password manager
+      - glance.id=bitwarden
   backup:
     image: offen/docker-volume-backup:v2.44.0
     container_name: bitwarden-backup
@@ -48,10 +47,10 @@ services:
       - BACKUP_RETENTION_DAYS=30
       - EXEC_FORWARD_OUTPUT=true
     labels:
-      - homepage.group=Hetzner Two
-      - homepage.name=Bitwarden backup
-      - homepage.icon=docker-volume-backup.png
-      - homepage.description=Bitwarden Backup to IDrive
+      - glance.name=bitwarden backup
+      - glance.icon=sh:docker-volume-backup
+      - glance.description=bitwarden backup to R2
+      - glance.id=bitwarden-backup
 
 volumes:
   bitwarden:

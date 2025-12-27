@@ -12,3 +12,8 @@ services:
       KEY: '${BESZEL_KEY}'
       TOKEN: ${BESZEL_TOKEN}
       HUB_URL: https://beszel.gustavocastro.com
+    labels:
+      - glance.name=beszel-agent
+      - glance.icon=sh:beszel
+      - glance.description=beszel agent
+      - glance.id=beszel-agent

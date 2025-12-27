@@ -16,8 +16,6 @@ stacks:
     secrets:
       sops:
         - secrets.env
-  homepage:
-    root: ./homepage
   linkwarden:
     root: ./linkwarden
     secrets:
@@ -30,15 +28,6 @@ stacks:
     secrets:
       sops:
         - secrets.env
-
-filesets:
-  homepage:
-    source: ./homepage/config
-    target_volume: homepage
-    target_path: /app/config
-    restart_services:
-      - homepage
-
 volumes:
   paperless-data:
   paperless-media:

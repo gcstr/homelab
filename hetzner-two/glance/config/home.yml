@@ -1,0 +1,61 @@
+- name: Home
+  # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+  # hide-desktop-navigation: true
+  columns:
+    - size: small
+      widgets:
+        - type: bookmarks
+          title: Services
+          hide-arrow: true
+          groups:
+            - links:
+                - title: Beszel
+                  url: https://beszel.gustavocastro.com/
+                  icon: sh:beszel
+                - title: Linkwarden
+                  url: https://linkwarden.gustavocastro.com/
+                  icon: sh:linkwarden
+                - title: Papra
+                  url: https://papra.gustavocastro.com/
+                  icon: sh:papra
+                - title: Bitwarden
+                  url: https://bitwarden.gustavocastro.com/
+                  icon: sh:bitwarden
+                - title: Uptime Kuma
+                  url: https://uptime.gustavocastro.com/
+                  icon: sh:uptime-kuma
+        - type: bookmarks
+          title: Cloud Providers
+          groups:
+             - links:
+                - title: Tailscale
+                  url: https://login.tailscale.com/welcome
+                - title: Hetzner
+                  url: https://console.hetzner.com/projects/11964967/dashboard
+                - title: Cloudflare
+                  url: https://dash.cloudflare.com/
+                - title: Oracle
+                  url: https://www.oracle.com/cloud/sign-in.html
+
+    - size: full
+      widgets:
+        - type: group
+          widgets:
+            - type: hacker-news
+            - type: lobsters
+
+        - type: group
+          widgets:
+          - type: docker-containers
+            title: Hetzner One
+            hide-by-default: false
+            sock-path: tcp://10.0.0.3:2375
+          - type: docker-containers
+            title: Hetzner Two
+            hide-by-default: false
+    - size: small
+      widgets:
+        - type: weather
+          location: Amsterdam
+          units: metric
+          hour-format: 24h

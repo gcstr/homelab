@@ -12,6 +12,10 @@ services:
       - homepage.name=PostgreSQL
       - homepage.icon=postgresql.png
       - homepage.description=Linkwarden Database
+      - glance.name=linkwarden-postgres
+      - glance.icon=sh:postgresql
+      - glance.description=linkwarden database
+      - glance.id=linkwarden-postgres
   linkwarden:
     container_name: linkwarden
     environment:
@@ -35,11 +39,11 @@ services:
       - postgres
       # - meilisearch
     labels:
-      - homepage.group=Hetzner One
-      - homepage.name=Linkwarden
-      - homepage.href=https://linkwarden.gustavocastro.com/
-      - homepage.icon=linkwarden.png
-      - homepage.description=Bookmark Manager
+      - glance.name=linkwarden
+      - glance.icon=sh:linkwarden
+      - glance.url=https://linkwarden.gustavocastro.com/
+      - glance.description=bookmarks
+      - glance.id=linkwarden
 
   linkwarden-backup:
     image: offen/docker-volume-backup:v2.44.0
@@ -60,10 +64,11 @@ services:
       - BACKUP_RETENTION_DAYS=30
       - EXEC_FORWARD_OUTPUT=true
     labels:
-      - homepage.group=Hetzner One
-      - homepage.name=Linkwarden backup
-      - homepage.icon=docker-volume-backup.png
-      - homepage.description=Linkwarden Backup to R2
+      - glance.name=linkwarden-backup
+      - glance.icon=sh:docker-volume-backup
+      - glance.description=linkwarden backup to R2
+      - glance.id=linkwarden-backup
+
 
   # meilisearch:
   #   image: getmeili/meilisearch:v1.12.8

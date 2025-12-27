@@ -21,24 +21,24 @@ services:
       - PAPERLESS_CONVERT_MEMORY_LIMIT=64
       - PAPERLESS_WEBSERVER_WORKERS=1
     labels:
-      - homepage.group=Hetzner One
-      - homepage.name=PaperlessNGX
-      - homepage.icon=paperless-ngx.png
-      - homepage.href=https://paperless.gustavocastro.com/
-      - homepage.description=Digital document management
       - docker-volume-backup.copy-post=curl -s -o /dev/null https://uptime.gustavocastro.com/api/push/8MTljV7Qaa2WaSTAJ5LNba8Rdr33RiDH?status=up
+      - glance.name=paperless-ngx
+      - glance.icon=sh:paperless-ngx
+      - glance.url=https://paperless.gustavocastro.com/
+      - glance.description=document management
+      - glance.id=paperless-ngx
 
   paperless-redis:
     image: redis:8
     container_name: paperless-redis
+    restart: unless-stopped
     volumes:
       - paperless-redis:/data
     labels:
-      - homepage.group=Hetzner One
-      - homepage.name=PaperlessNGX-redis
-      - homepage.icon=redis.png
-      - homepage.description=PaperlessNGX Redis database
-
+      - glance.name=paperless-redis
+      - glance.icon=sh:redis
+      - glance.description=paperless redis
+      - glance.id=paperless-redis
   paperless-backup:
     image: offen/docker-volume-backup:v2.44.0
     restart: unless-stopped
@@ -59,10 +59,10 @@ services:
       - BACKUP_RETENTION_DAYS=15
       - EXEC_FORWARD_OUTPUT=true
     labels:
-      - homepage.group=Hetzner One
-      - homepage.name=PaperlessNGX backup
-      - homepage.icon=docker-volume-backup.png
-      - homepage.description=PaperlessNGX Backup to R2
+      - glance.name=paperless-backup
+      - glance.icon=sh:docker-volume-backup
+      - glance.description=paperless backup to R2
+      - glance.id=paperless-backup
 
 volumes:
   paperless-data:

@@ -9,6 +9,12 @@ services:
       - papra:/app/app-data
     environment:
       - APP_BASE_URL=https://papra.gustavocastro.com
+    labels:
+      - glance.name=papra
+      - glance.icon=sh:papra
+      - glance.url=https://papra.gustavocastro.com/
+      - glance.description=papra self-hosted pastebin
+      - glance.id=papra
       
   papra-backup:
     image: offen/docker-volume-backup:v2.44.0
@@ -29,10 +35,10 @@ services:
       - BACKUP_RETENTION_DAYS=15
       - EXEC_FORWARD_OUTPUT=true
     labels:
-      - homepage.group=Hetzner One
-      - homepage.name=Papra backup
-      - homepage.icon=docker-volume-backup.png
-      - homepage.description=Papra Backup to R2
+      - glance.name=papra-backup
+      - glance.icon=sh:docker-volume-backup
+      - glance.description=papra backup to R2
+      - glance.id=papra-backup
 
 volumes:
   papra:

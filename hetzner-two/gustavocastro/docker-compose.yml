@@ -23,11 +23,11 @@ services:
       - traefik.http.middlewares.redir-www-to-apex.redirectregex.regex=^https?://www\.gustavocastro\.com/(.*)
       - traefik.http.middlewares.redir-www-to-apex.redirectregex.replacement=https://gustavocastro.com/$${1}
       - traefik.http.middlewares.redir-www-to-apex.redirectregex.permanent=true
-      - homepage.group=Hetzner Two
-      - homepage.name=gustavocastro.com
-      - homepage.icon=nginx.png
-      - homepage.href=https://gustavocastro.com/
-      - homepage.description=Personal website
+      - glance.name=gustavocastro.com
+      - glance.icon=sh:nginx
+      - glance.url=https://gustavocastro.com
+      - glance.description=personal website
+      - glance.id=gustavocastro-com
     networks:
       - traefik
 

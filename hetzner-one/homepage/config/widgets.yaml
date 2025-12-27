@@ -1,7 +1,0 @@
-- resources:
-    cpu: true
-    memory: true
-    disk: /
-    cputemp: false
-    uptime: true
-    units: metric
