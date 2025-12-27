@@ -28,6 +28,9 @@ stacks:
     secrets:
       sops:
         - secrets.env
+  cloudreve:
+    root: ./cloudreve
+
 volumes:
   paperless-data:
   paperless-media:
@@ -37,4 +40,6 @@ volumes:
   linkwarden_pgdata:
   linkwarden_data:
   papra: 
+  cloudreve_data:
+  cloudreve_redis:
   

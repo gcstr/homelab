@@ -9,19 +9,25 @@
           groups:
             - hide-arrow: true
               links:
-                - title: Beszel
+                - title: Monitoring
                   url: https://beszel.gustavocastro.com/
                   icon: sh:beszel
-                - title: Linkwarden
+                - title: Bookmarks
                   url: https://linkwarden.gustavocastro.com/
                   icon: sh:linkwarden
-                - title: Papra
+                - title: Files
+                  url: https://files.gustavocastro.com/
+                  icon: sh:cloudreve
+                - title: Paperless
+                  url: https://paperless.gustavocastro.com/
+                  icon: sh:paperless-ngx
+                - title: Documents
                   url: https://papra.gustavocastro.com/
                   icon: sh:papra
-                - title: Bitwarden
+                - title: Passwords
                   url: https://bitwarden.gustavocastro.com/
                   icon: sh:bitwarden
-                - title: Uptime Kuma
+                - title: Uptime
                   url: https://uptime.gustavocastro.com/
                   icon: sh:uptime-kuma
         - type: bookmarks

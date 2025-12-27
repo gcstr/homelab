@@ -49,6 +49,8 @@ filesets:
     source: ./traefik/dynamic
     target_volume: traefik_dynamic
     target_path: /dynamic
+    restart_services:
+      - traefik
   coredns_config:
     source: ./coredns/config
     target_volume: coredns_config

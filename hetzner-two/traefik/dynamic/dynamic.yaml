@@ -28,6 +28,13 @@ http:
         - websecure
       service: papra
       tls: {}
+    cloudreve:
+      rule: Host(`files.gustavocastro.com`)
+      entryPoints:
+        - web
+        - websecure
+      service: cloudreve
+      tls: {}
   services:
     paperless:
       loadBalancer:
@@ -45,3 +52,7 @@ http:
       loadBalancer:
         servers:
           - url: "http://10.0.0.3:1221"
+    cloudreve:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.0.3:5212"

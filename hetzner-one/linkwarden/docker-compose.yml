@@ -8,10 +8,6 @@ services:
     volumes:
       - linkwarden_pgdata:/var/lib/postgresql/data
     labels:
-      - homepage.group=Hetzner One
-      - homepage.name=PostgreSQL
-      - homepage.icon=postgresql.png
-      - homepage.description=Linkwarden Database
       - glance.name=postgres
       - glance.parent=linkwarden
   linkwarden:
