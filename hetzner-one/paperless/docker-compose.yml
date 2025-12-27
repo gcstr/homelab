@@ -26,7 +26,7 @@ services:
       - glance.icon=sh:paperless-ngx
       - glance.url=https://paperless.gustavocastro.com/
       - glance.description=document management
-      - glance.id=paperless-ngx
+      - glance.id=paperless
 
   paperless-redis:
     image: redis:8
@@ -35,10 +35,8 @@ services:
     volumes:
       - paperless-redis:/data
     labels:
-      - glance.name=paperless-redis
-      - glance.icon=sh:redis
-      - glance.description=paperless redis
-      - glance.id=paperless-redis
+      - glance.name=redis
+      - glance.parent=paperless
   paperless-backup:
     image: offen/docker-volume-backup:v2.44.0
     restart: unless-stopped
@@ -59,11 +57,8 @@ services:
       - BACKUP_RETENTION_DAYS=15
       - EXEC_FORWARD_OUTPUT=true
     labels:
-      - glance.name=paperless-backup
-      - glance.icon=sh:docker-volume-backup
-      - glance.description=paperless backup to R2
-      - glance.id=paperless-backup
-
+      - glance.name=docker-volume-backup
+      - glance.parent=paperless
 volumes:
   paperless-data:
     external: true

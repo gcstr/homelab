@@ -35,10 +35,8 @@ services:
       - BACKUP_RETENTION_DAYS=15
       - EXEC_FORWARD_OUTPUT=true
     labels:
-      - glance.name=papra-backup
-      - glance.icon=sh:docker-volume-backup
-      - glance.description=papra backup to R2
-      - glance.id=papra-backup
+      - glance.name=docker-volume-backup
+      - glance.parent=papra
 
 volumes:
   papra:

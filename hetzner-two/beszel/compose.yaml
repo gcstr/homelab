@@ -37,9 +37,7 @@ services:
       KEY: "${BESZEL_KEY}"
     labels:
       - glance.name=beszel-agent
-      - glance.icon=sh:beszel
-      - glance.description=beszel agent
-      - glance.id=beszel
+      - glance.parent=beszel
 
 volumes:
   beszel_data:

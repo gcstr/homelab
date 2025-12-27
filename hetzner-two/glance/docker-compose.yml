@@ -14,7 +14,7 @@ services:
     #   - 8080:8080
     labels:
       - traefik.enable=true
-      - traefik.http.routers.glance.rule=Host(`glance.gustavocastro.com`)
+      - traefik.http.routers.glance.rule=Host(`home.gustavocastro.com`)
       - traefik.http.routers.glance.entrypoints=websecure
       - traefik.http.routers.glance.tls=true
       - traefik.http.services.glance.loadbalancer.server.port=8080

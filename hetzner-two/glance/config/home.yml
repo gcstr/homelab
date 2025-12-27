@@ -6,9 +6,9 @@
       widgets:
         - type: bookmarks
           title: Services
-          hide-arrow: true
           groups:
-            - links:
+            - hide-arrow: true
+              links:
                 - title: Beszel
                   url: https://beszel.gustavocastro.com/
                   icon: sh:beszel
@@ -43,7 +43,6 @@
           widgets:
             - type: hacker-news
             - type: lobsters
-
         - type: group
           widgets:
           - type: docker-containers
@@ -59,3 +58,8 @@
           location: Amsterdam
           units: metric
           hour-format: 24h
+        - type: clock
+          hour-format: 24h
+          timezones:
+            - timezone: America/Sao_Paulo
+              label: São Paulo

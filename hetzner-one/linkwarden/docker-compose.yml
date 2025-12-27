@@ -12,10 +12,8 @@ services:
       - homepage.name=PostgreSQL
       - homepage.icon=postgresql.png
       - homepage.description=Linkwarden Database
-      - glance.name=linkwarden-postgres
-      - glance.icon=sh:postgresql
-      - glance.description=linkwarden database
-      - glance.id=linkwarden-postgres
+      - glance.name=postgres
+      - glance.parent=linkwarden
   linkwarden:
     container_name: linkwarden
     environment:
@@ -64,10 +62,8 @@ services:
       - BACKUP_RETENTION_DAYS=30
       - EXEC_FORWARD_OUTPUT=true
     labels:
-      - glance.name=linkwarden-backup
-      - glance.icon=sh:docker-volume-backup
-      - glance.description=linkwarden backup to R2
-      - glance.id=linkwarden-backup
+      - glance.name=docker-volume-backup
+      - glance.parent=linkwarden
 
 
   # meilisearch:
