@@ -1,5 +1,12 @@
 http:
   routers:
+    traefik-dashboard:
+      rule: Host(`traefik.gustavocastro.com`)
+      entryPoints:
+        - web
+        - websecure
+      service: api@internal
+      tls: {}
     paperless:
       rule: Host(`paperless.gustavocastro.com`)
       entryPoints:

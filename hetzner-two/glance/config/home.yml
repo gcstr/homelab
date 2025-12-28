@@ -30,6 +30,9 @@
                 - title: Uptime
                   url: https://uptime.gustavocastro.com/
                   icon: sh:uptime-kuma
+                - title: Traefik
+                  url: https://traefik.gustavocastro.com/
+                  icon: sh:traefik
         - type: bookmarks
           title: Cloud Providers
           groups:

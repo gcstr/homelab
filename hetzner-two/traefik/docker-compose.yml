@@ -20,6 +20,7 @@ services:
       - glance.name=traefik
       - glance.icon=sh:traefik
       - glance.description=reverse proxy
+      - glance.url=https://traefik.gustavocastro.com
       - glance.id=traefik
 
 networks:
