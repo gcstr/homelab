@@ -30,6 +30,7 @@ services:
   backup:
     image: offen/docker-volume-backup:v2.44.0
     container_name: bitwarden-backup
+    restart: unless-stopped
     volumes:
       - bitwarden:/backup/bitwarden
       - /var/run/docker.sock:/var/run/docker.sock:ro

@@ -7,13 +7,6 @@ http:
         - websecure
       service: paperless
       tls: {}
-    homepage:
-      rule: Host(`home.gustavocastro.com`)
-      entryPoints:
-        - web
-        - websecure
-      service: homepage
-      tls: {}
     linkwarden:
       rule: Host(`linkwarden.gustavocastro.com`)
       entryPoints:
@@ -40,10 +33,6 @@ http:
       loadBalancer:
         servers:
           - url: "http://10.0.0.3:8000"
-    homepage:
-      loadBalancer:
-        servers:
-          - url: "http://10.0.0.3:3000"
     linkwarden:
       loadBalancer:
         servers:
