@@ -52,6 +52,11 @@
           widgets:
             - type: hacker-news
             - type: lobsters
+            - type: rss
+              title: selfh.st
+              feeds:
+                - url: https://selfh.st/rss/
+                  title: selfh.st
         - type: group
           widgets:
           - type: docker-containers

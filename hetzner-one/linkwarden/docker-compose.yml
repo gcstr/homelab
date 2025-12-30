@@ -10,6 +10,7 @@ services:
     labels:
       - glance.name=postgres
       - glance.parent=linkwarden
+
   linkwarden:
     container_name: linkwarden
     environment:
@@ -23,8 +24,10 @@ services:
       # - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_MODEL=claude-haiku-4-5
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - MAX_WORKERS=1
+      - ARCHIVE_TAKE_COUNT=1
     restart: always
-    image: ghcr.io/linkwarden/linkwarden:v2.13.2
+    image: ghcr.io/linkwarden/linkwarden:v2.13.3
     ports:
       - 10.0.0.3:3001:3000
     volumes:

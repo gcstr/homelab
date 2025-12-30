@@ -31,6 +31,8 @@ stacks:
         - secrets.env
   glance:
     root: ./glance
+  placeholder-public:
+    root: ./placeholder-public
 
 filesets:
   gcstr:
@@ -39,6 +41,15 @@ filesets:
     target_path: /usr/share/nginx/html
     restart_services:
       - web
+  public_placeholder:
+    source: ./placeholder-public/html
+    target_volume: public_placeholder
+    target_path: /usr/share/nginx/html
+    ownership:
+      file_mode: "755"
+      preserve_existing: false
+    restart_services:
+      - placeholder
   traefik_config:
     source: ./traefik/config
     target_volume: traefik_config

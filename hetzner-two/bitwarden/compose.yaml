@@ -16,10 +16,8 @@ services:
       - globalSettings__disableUserRegistration=true
       - adminSettings__admins=me@gustavocastro.com
     labels:
+      # Router defined in traefik/dynamic/dynamic.yaml for split-horizon
       - traefik.enable=true
-      - traefik.http.routers.bitwarden.rule=Host(`bitwarden.gustavocastro.com`)
-      - traefik.http.routers.bitwarden.entrypoints=websecure
-      - traefik.http.routers.bitwarden.tls=true
       - traefik.http.services.bitwarden.loadbalancer.server.port=8080
       - docker-volume-backup.copy-post=curl -s -o /dev/null https://uptime.gustavocastro.com/api/push/H5cVF03sWzYSMwDF0i4bMpssc3bTkmJz?status=up
       - glance.name=bitwarden

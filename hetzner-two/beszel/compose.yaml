@@ -11,10 +11,8 @@ services:
     networks:
       - traefik
     labels:
+      # Router defined in traefik/dynamic/dynamic.yaml for split-horizon
       - traefik.enable=true
-      - traefik.http.routers.beszel.rule=Host(`beszel.gustavocastro.com`)
-      - traefik.http.routers.beszel.entrypoints=web,websecure
-      - traefik.http.routers.beszel.tls=true
       - traefik.http.services.beszel.loadbalancer.server.port=8090
       - glance.name=beszel
       - glance.icon=sh:beszel

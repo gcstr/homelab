@@ -13,10 +13,8 @@ services:
     # ports:
     #   - 8080:8080
     labels:
+      # Router defined in traefik/dynamic/dynamic.yaml for split-horizon
       - traefik.enable=true
-      - traefik.http.routers.glance.rule=Host(`home.gustavocastro.com`)
-      - traefik.http.routers.glance.entrypoints=websecure
-      - traefik.http.routers.glance.tls=true
       - traefik.http.services.glance.loadbalancer.server.port=8080
       - glance.name=glance
       - glance.icon=sh:glance

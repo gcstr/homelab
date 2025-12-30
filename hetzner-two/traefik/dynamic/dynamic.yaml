@@ -1,40 +1,100 @@
 http:
   routers:
+    # ============================================
+    # PRIVATE SERVICES - Tailnet only (high priority)
+    # ============================================
+    
+    # --- Traefik Dashboard ---
     traefik-dashboard:
-      rule: Host(`traefik.gustavocastro.com`)
+      rule: "Host(`traefik.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
       entryPoints:
-        - web
         - websecure
       service: api@internal
+      priority: 100
       tls: {}
-    paperless:
-      rule: Host(`paperless.gustavocastro.com`)
+
+    # --- Docker services on this host ---
+    beszel:
+      rule: "Host(`beszel.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
       entryPoints:
-        - web
+        - websecure
+      service: beszel@docker
+      priority: 100
+      tls: {}
+
+    bitwarden:
+      rule: "Host(`bitwarden.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
+      entryPoints:
+        - websecure
+      service: bitwarden@docker
+      priority: 100
+      tls: {}
+
+    glance:
+      rule: "Host(`home.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
+      entryPoints:
+        - websecure
+      service: glance@docker
+      priority: 100
+      tls: {}
+
+    uptime:
+      rule: "Host(`uptime.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
+      entryPoints:
+        - websecure
+      service: uptime@docker
+      priority: 100
+      tls: {}
+
+    # --- External services (on 10.0.0.3) ---
+    paperless:
+      rule: "Host(`paperless.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
+      entryPoints:
         - websecure
       service: paperless
+      priority: 100
       tls: {}
+
     linkwarden:
-      rule: Host(`linkwarden.gustavocastro.com`)
+      rule: "Host(`linkwarden.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
       entryPoints:
-        - web
         - websecure
       service: linkwarden
+      priority: 100
       tls: {}
+
     papra:
-      rule: Host(`papra.gustavocastro.com`)
+      rule: "Host(`papra.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
       entryPoints:
-        - web
         - websecure
       service: papra
+      priority: 100
       tls: {}
+
     cloudreve:
-      rule: Host(`files.gustavocastro.com`)
+      rule: "Host(`files.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
       entryPoints:
-        - web
         - websecure
       service: cloudreve
+      priority: 100
       tls: {}
+
+    # ============================================
+    # CATCH-ALL - Placeholder for all other subdomains
+    # Matches *.gustavocastro.com (excludes apex and www which are public)
+    # ============================================
+    placeholder-catchall:
+      rule: "HostRegexp(`^.+\\.gustavocastro\\.com$`)"
+      entryPoints:
+        - websecure
+      service: placeholder-public@docker
+      priority: 1
+      tls: {}
+
+  # ============================================
+  # SERVICES - Only external backends defined here
+  # Docker services use @docker suffix automatically
+  # ============================================
   services:
     paperless:
       loadBalancer:
