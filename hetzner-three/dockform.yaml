@@ -1,0 +1,21 @@
+docker:
+  context: hetzner-three
+  identifier: homeserver
+
+sops:
+  age:
+    key_file: ${AGE_KEY_FILE}
+
+stacks:
+  code:
+    root: code-server
+  beszel:
+    root: beszel
+    secrets:
+      sops:
+        - secrets.env
+
+volumes:
+  code_dot_local:
+  code_dot_config:
+  code_workspace:

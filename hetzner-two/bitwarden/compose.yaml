@@ -19,7 +19,7 @@ services:
       # Router defined in traefik/dynamic/dynamic.yaml for split-horizon
       - traefik.enable=true
       - traefik.http.services.bitwarden.loadbalancer.server.port=8080
-      - docker-volume-backup.copy-post=curl -s -o /dev/null https://uptime.gustavocastro.com/api/push/H5cVF03sWzYSMwDF0i4bMpssc3bTkmJz?status=up
+      - docker-volume-backup.copy-post=curl -s -o /dev/null http://uptime-kuma:3001/api/push/H5cVF03sWzYSMwDF0i4bMpssc3bTkmJz?status=up
       - glance.name=bitwarden
       - glance.icon=sh:bitwarden
       - glance.url=https://bitwarden.gustavocastro.com

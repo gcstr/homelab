@@ -79,6 +79,14 @@ http:
       priority: 100
       tls: {}
 
+    code:
+      rule: "Host(`code.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
+      entryPoints:
+        - websecure
+      service: code
+      priority: 100
+      tls: {}
+
     # ============================================
     # CATCH-ALL - Placeholder for all other subdomains
     # Matches *.gustavocastro.com (excludes apex and www which are public)
@@ -112,3 +120,7 @@ http:
       loadBalancer:
         servers:
           - url: "http://10.0.0.3:5212"
+    code:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.0.4:8080"

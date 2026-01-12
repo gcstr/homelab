@@ -53,6 +53,11 @@
             - type: hacker-news
             - type: lobsters
             - type: rss
+              title: News Minimalist
+              feeds:
+                - url: https://rss.beehiiv.com/feeds/4aF2pGVAEN.xml
+                  title: News Minimalist
+            - type: rss
               title: selfh.st
               feeds:
                 - url: https://selfh.st/rss/

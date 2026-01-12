@@ -1,0 +1,25 @@
+services:
+  code-server:
+    image: codercom/code-server:4.107.1
+    container_name: code-server
+    restart: unless-stopped
+    ports:
+      - "10.0.0.4:8080:8080"
+    volumes:
+      - code_dot_local:/home/coder/.local
+      - code_dot_config:/home/coder/.config
+      - code_workspace:/home/coder/workspace
+    user: "${UID}:${GID}"
+    environment:
+      - DOCKER_USER=${USER}
+      - AUTH=none
+      - CS_DISABLE_TELEMETRY=1
+      - CS_DISABLE_GETTING_STARTED_OVERRIDE=1
+
+volumes:
+  code_dot_local:
+    external: true
+  code_dot_config:
+    external: true
+  code_workspace:
+    external: true
