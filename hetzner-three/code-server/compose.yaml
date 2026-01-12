@@ -6,8 +6,8 @@ services:
     ports:
       - "10.0.0.4:8080:8080"
     volumes:
-      - code_dot_local:/home/coder/.local
-      - code_dot_config:/home/coder/.config
+      - code_dot_local:/root/.local
+      - code_dot_config:/root/.config
       - code_workspace:/home/coder/workspace
     user: "${UID}:${GID}"
     environment:
@@ -15,6 +15,12 @@ services:
       - AUTH=none
       - CS_DISABLE_TELEMETRY=1
       - CS_DISABLE_GETTING_STARTED_OVERRIDE=1
+    labels:
+      - glance.name=code-server
+      - glance.icon=sh:coder-light
+      - glance.url=https://code.gustavocastro.com/
+      - glance.description=VSCode
+      - glance.id=code
 
 volumes:
   code_dot_local:

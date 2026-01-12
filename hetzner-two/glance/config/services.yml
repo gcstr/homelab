@@ -1,0 +1,16 @@
+- name: Services
+  width: slim
+  columns:
+    - size: full
+      widgets:
+        - type: docker-containers
+          title: Hetzner One
+          hide-by-default: false
+          sock-path: tcp://10.0.0.3:2375
+        - type: docker-containers
+          title: Hetzner Two
+          hide-by-default: false
+        - type: docker-containers
+          title: Hetzner Three
+          hide-by-default: false
+          sock-path: tcp://10.0.0.4:2375

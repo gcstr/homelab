@@ -12,6 +12,9 @@
                 - title: Monitoring
                   url: https://beszel.gustavocastro.com/
                   icon: sh:beszel
+                - title: Code
+                  url: https://code.gustavocastro.com/
+                  icon: sh:coder-light
                 - title: Bookmarks
                   url: https://linkwarden.gustavocastro.com/
                   icon: sh:linkwarden
@@ -71,6 +74,10 @@
           - type: docker-containers
             title: Hetzner Two
             hide-by-default: false
+          - type: docker-containers
+            title: Hetzner Three
+            hide-by-default: false
+            sock-path: tcp://10.0.0.4:2375
     - size: small
       widgets:
         - type: weather
