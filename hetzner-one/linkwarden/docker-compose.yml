@@ -27,7 +27,7 @@ services:
       - MAX_WORKERS=1
       - ARCHIVE_TAKE_COUNT=1
     restart: always
-    image: ghcr.io/linkwarden/linkwarden:v2.13.3
+    image: ghcr.io/linkwarden/linkwarden:v2.13.5
     ports:
       - 10.0.0.3:3001:3000
     volumes:
