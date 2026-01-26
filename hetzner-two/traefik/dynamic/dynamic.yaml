@@ -15,7 +15,7 @@ http:
 
     # --- Docker services on this host ---
     beszel:
-      rule: "Host(`beszel.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
+      rule: "Host(`monitoring.gustavocastro.com`) && ClientIP(`100.64.0.0/10`)"
       entryPoints:
         - websecure
       service: beszel@docker

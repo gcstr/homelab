@@ -1,6 +1,6 @@
 services:
   paperless-ngx:
-    image: paperlessngx/paperless-ngx:2.20.3
+    image: paperlessngx/paperless-ngx:2.20.5
     restart: unless-stopped
     ports:
       - 10.0.0.3:8000:8000
